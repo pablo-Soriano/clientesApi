@@ -1,7 +1,7 @@
 import ClienteModel from "../models/ClienteModel.js";
-const Json2csvParser = require('json2csv').Parser;
+/* const Json2csvParser = require('json2csv').Parser;
 const fs = require('fs');
-
+ */
 
 // muestra todos los clientes
 export const mostrarClientes = async (req, res) => {
