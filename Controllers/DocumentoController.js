@@ -13,19 +13,24 @@ export const crearDocumento = async (req, res) => {
             idClientes: parseInt(req.body.idCliente),
             idDocumentos: actualdocumento.id
         });
+        //console.log(actualdocumento)
         res.json({'message':`Registro Creado Correctamente!!! ${actualdocumento.id}`});
     } catch (error) {
         res.json({'message': error.message})
+        console.log(error);
     }
 }
 
 // mostrar Documentos por cliente
 export const mostrarDocumento = async (req, res) => {
     try {
-        const direcciones = await db.query(`SELECT d.id, d.Nombredocumento, d.numero FROM documentos d INNER JOIN documentosclientes dc ON d.id = dc.idDocumentos WHERE d.Estado = 1 AND dc.idClientes = ${req.params.id}`, { type: QueryTypes.SELECT })
-        res.json(direcciones)
+        const documentos = await db.query(`SELECT d.id, d.Nombredocumento, d.numero FROM documentos d INNER JOIN documentosclientes dc ON d.id = dc.idDocumentos WHERE d.Estado = 1 AND dc.idClientes = ${req.params.id}`, { type: QueryTypes.SELECT })
+        res.json(documentos)
+console.log(documentos)
+        console.log(req.params.idClientes);
     }catch (error) {
         res.json( {message: error.message} )
+        console.log(error);
     }
 }
 
